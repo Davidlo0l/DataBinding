@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DataBinding"
+             x:Class="DataBinding.BindingList">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:Datos x:Key="datosUno">
+            </local:Datos>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+        <ContentPage.Content>
+        <Grid BindingContext="{Binding Source= {StaticResource datosUno}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <ListView ItemsSource="{Binding Personas}"
+                      SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay}">
+            </ListView>
+            <StackLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center"
+                         BindingContext="{Binding PersonaSeleccionada}">
+                <Label Text="{Binding Nombre, Mode=TwoWay}" TextColor="Green" FontSize="18"></Label>
+                <Label Text="{Binding Pais, Mode=TwoWay}" TextColor="Green" FontSize="18"></Label>
+                
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
