@@ -21,7 +21,7 @@
             </ListView>
             <StackLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center"
                          BindingContext="{Binding PersonaSeleccionada}">
-                <Label Text="{Binding Nombre, Mode=TwoWay}" TextColor="Green" FontSize="18"></Label>
+                <Label Text="{Binding Nombre, Mode=TwoWay}" TextColor="Blue" FontSize="18"></Label>
                 <Label Text="{Binding Pais, Mode=TwoWay}" TextColor="Green" FontSize="18"></Label>
                 
             </StackLayout>
