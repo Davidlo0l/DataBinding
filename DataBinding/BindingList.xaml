@@ -8,6 +8,27 @@
         <ResourceDictionary>
             <local:Datos x:Key="datosUno">
             </local:Datos>
+            <local:Convertidores x:Key="colorsaldo">
+                
+            </local:Convertidores>
+            <DataTemplate x:Key="listTemplate">
+                
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition Width="3"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackLayout >
+                            <Label Text="{Binding Nombre}" TextColor="Blue" FontSize="20"></Label>
+                            <Label Text="{Binding Pais}" TextColor="Green" FontSize="18"></Label>
+                            <Label Text="{Binding FechaNacimiento, StringFormat='{}{0:dd/MM/yyyy}'}" TextColor="OrangeRed" FontSize="8" Grid.Column="1" VerticalTextAlignment="Center"></Label>
+
+                        </StackLayout>
+                        <Label Text="{Binding Saldo, StringFormat='{}{0:c}'}" TextColor="Red" FontSize="18" Grid.Column="1" VerticalTextAlignment="Center" TextColor="{Binding , Saldo, Converter= {StaticResource colorsaldo }}"></Label>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
         <ContentPage.Content>
@@ -17,12 +38,16 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <ListView ItemsSource="{Binding Personas}"
-                      SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay}">
+                      SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay}"
+                      HasUnevenRows="True" ItemTemplate="{StaticResource listTemplate}">
+                
             </ListView>
             <StackLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center"
                          BindingContext="{Binding PersonaSeleccionada}">
-                <Label Text="{Binding Nombre, Mode=TwoWay}" TextColor="Blue" FontSize="18"></Label>
-                <Label Text="{Binding Pais, Mode=TwoWay}" TextColor="Green" FontSize="18"></Label>
+                <Label Text="{Binding Nombre, Mode=TwoWay}" ></Label>
+                <Label Text="{Binding Pais, Mode=TwoWay}"></Label>
+                <Label Text="{Binding Saldo, StringFormat='{}{0:c}'}" ></Label>
+                <Label Text="{Binding FechaNacimiento, StringFormat='{}{0:dd/MM/yyyy}'}"></Label>
                 
             </StackLayout>
         </Grid>
